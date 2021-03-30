@@ -1,4 +1,3 @@
-Time                |Code|Price
 2021-Feb-24 10:50:34|WIKA|1810
 2021-Feb-24 10:50:36|SAPX|1550
 2021-Feb-24 10:50:37|BRIS|2830
@@ -899,8 +898,3 @@ Time                |Code|Price
 2021-Feb-24 11:30:00|BFIN|710
 2021-Feb-24 11:30:00|ASSA|1280
 2021-Feb-24 11:30:00|BMRI|6375
-
-Description : 
-Time  : Transaction Time
-Code  : stock symbol
-Price : Trade price 

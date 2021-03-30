@@ -1,25 +1,30 @@
 package broadcast.model;
 
+import broadcast.dto.StockDTO;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Stock {
 
-    public String time;
-    public String code;
-    public String price;
+    private LocalDateTime time;
+    private String code;
+    private Long price;
 
     public Stock() {
     }
 
-    public Stock(String time, String code, String price) {
+    public Stock(LocalDateTime time, String code, Long price) {
         this.time = time;
         this.code = code;
         this.price = price;
     }
 
-    public String getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
@@ -31,11 +36,35 @@ public class Stock {
         this.code = code;
     }
 
-    public String getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public LocalDateTime getDateTime(String time){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss");
+        return LocalDateTime.parse(time, formatter);
+    }
+
+    public Stock convertToEntity(StockDTO stockDTO){
+        Stock stock = new Stock();
+        Long price = Long.parseLong(stockDTO.getPrice());
+        stock.setTime(getDateTime(stockDTO.getTime()));
+        stock.setCode(stockDTO.getCode());
+        stock.setPrice(price);
+        return stock;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "time=" + time +
+                ", code='" + code + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

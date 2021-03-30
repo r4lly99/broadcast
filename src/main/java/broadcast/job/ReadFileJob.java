@@ -24,7 +24,7 @@ public class ReadFileJob {
     Producer broadcast;
 
     @Scheduled(fixedDelay = "45s", initialDelay = "5s")
-    void executeEveryFourtyFive() {
+    void executeBroadcastMessage() {
         LOG.info("Simple Job every 45 seconds: {}", new SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(new Date()));
         List<Stock> stockList = proceedFileIntoObj();
         if (stockList.size() > 0) {

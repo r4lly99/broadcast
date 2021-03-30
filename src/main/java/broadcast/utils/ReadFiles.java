@@ -1,5 +1,6 @@
 package broadcast.utils;
 
+import broadcast.dto.StockDTO;
 import broadcast.model.Stock;
 
 import java.io.File;
@@ -25,7 +26,8 @@ public class ReadFiles {
                 if(content != null && content.contains("|")){
                     String[] splitContent = content.split("\\|");
                     if (splitContent.length > 0){
-                        Stock stock = new Stock(splitContent[0].trim(), splitContent[1], splitContent[2]);
+                        StockDTO stockDTO = new StockDTO(splitContent[0].trim(), splitContent[1], splitContent[2]);
+                        Stock stock = new Stock().convertToEntity(stockDTO);
                         stockList.add(stock);
                     }
                 }

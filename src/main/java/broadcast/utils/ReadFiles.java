@@ -6,29 +6,35 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class ReadFiles {
 
+    public List<Stock> convertFileIntoObj() throws URISyntaxException {
 
-
-    public void ReadTheFile() throws URISyntaxException {
+        List<Stock> stockList = new ArrayList<>();
         File file = getFileFromResource("test3.txt");
-        String filePath = file.getAbsolutePath();
 
-        String content = null;
-        try {
-            content = readFile(filePath);
+        try (Stream<String> lines = Files.lines(file.toPath(), Charset.defaultCharset())) {
+            lines.forEachOrdered(content ->
+            {
+                if(content != null && content.contains("|")){
+                    String[] splitContent = content.split("\\|");
+                    if (splitContent.length > 0){
+                        Stock stock = new Stock(splitContent[0].trim(), splitContent[1], splitContent[2]);
+                        stockList.add(stock);
+                    }
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if(content != null && content.contains("|")){
-            String[] splitContent = content.split("\\|");
-            Stock stock = new Stock(splitContent[0], splitContent[1], splitContent[2]);
-//            stockProducer.sendStockToKafka(stock);
-        }
+        return stockList;
     }
 
     public File getFileFromResource(String fileName) throws URISyntaxException {
@@ -38,16 +44,9 @@ public class ReadFiles {
         if (resource == null) {
             throw new IllegalArgumentException("file not found! " + fileName);
         } else {
-            // failed if files have whitespaces or special characters
-            //return new File(resource.getFile());
             return new File(resource.toURI());
         }
 
     }
-
-    public static String readFile(String path) throws IOException {
-        return Files.readString(Paths.get(path));
-    }
-
 
 }

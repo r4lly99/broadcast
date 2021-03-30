@@ -1,15 +1,14 @@
 package broadcast.kafka;
 
+import broadcast.model.Stock;
 import io.micronaut.configuration.kafka.annotation.KafkaClient;
-import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
+import io.micronaut.messaging.annotation.MessageBody;
 
 @KafkaClient
 public interface Producer {
 
-    @Topic("my-products")
-    void sendProduct(@KafkaKey String brand, String name);
-
-    void sendProduct(@Topic String topic, @KafkaKey String brand, String name);
+    @Topic("stocks")
+    void sendStocks(@MessageBody Stock stock);
 
 }

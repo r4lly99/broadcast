@@ -1,16 +1,17 @@
 package broadcast.kafka;
 
-import io.micronaut.configuration.kafka.annotation.KafkaKey;
+import broadcast.model.Stock;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.OffsetReset;
 import io.micronaut.configuration.kafka.annotation.Topic;
+import io.micronaut.messaging.annotation.MessageBody;
 
 @KafkaListener(offsetReset = OffsetReset.EARLIEST)
 public class Consumer {
 
-    @Topic("my-products")
-    public void receive(@KafkaKey String brand, String name) {
-        System.out.println("Got Product - " + name + " by " + brand);
+    @Topic("stocks")
+    public void receive(@MessageBody Stock stock) {
+        System.out.println("Got Stock - " + stock);
     }
 
 }

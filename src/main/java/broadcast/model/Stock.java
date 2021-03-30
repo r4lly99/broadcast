@@ -15,27 +15,12 @@ public class Stock {
         this.price = price;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "time='" + time + '\'' +
+                ", code='" + code + '\'' +
+                ", price='" + price + '\'' +
+                '}';
     }
 }

@@ -16,6 +16,8 @@ For coding pretest Backend Developer at Bibit
 
 ### Installing
 
+* Clone this repository 
+* Enabled annotation processing  
 * To run kafka(zookeper & broker) from dockerfile(using port 2181 & 9092) 
 ```
 docker-compose up -d

@@ -9,12 +9,12 @@ public class Stock {
 
     private LocalDateTime time;
     private String code;
-    private Long price;
+    private int price;
 
     public Stock() {
     }
 
-    public Stock(LocalDateTime time, String code, Long price) {
+    public Stock(LocalDateTime time, String code, int price) {
         this.time = time;
         this.code = code;
         this.price = price;
@@ -36,11 +36,11 @@ public class Stock {
         this.code = code;
     }
 
-    public Long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -51,7 +51,7 @@ public class Stock {
 
     public Stock convertToEntity(StockDTO stockDTO){
         Stock stock = new Stock();
-        Long price = Long.parseLong(stockDTO.getPrice());
+        int price = Integer.parseInt(stockDTO.getPrice());
         stock.setTime(getDateTime(stockDTO.getTime()));
         stock.setCode(stockDTO.getCode());
         stock.setPrice(price);

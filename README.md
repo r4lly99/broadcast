@@ -4,7 +4,7 @@ Simple apps to read file and broadcast into message broker.
 
 ## Description
 
-For coding pretest Backend Developer at Bibit  
+For coding pretest Backend Developer
 
 ## Getting Started
 
